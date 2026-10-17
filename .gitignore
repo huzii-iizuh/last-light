@@ -10,3 +10,6 @@ _downloads/*.zip
 
 # Blender autosave backups
 *.blend1
+
+# The Last Ember now lives in its own repository: github.com/huzii-iizuh/the-last-ember
+_old_ember/

@@ -18,4 +18,6 @@ Everything else (controls, tech stack, MVP, folder and scene structure, design n
 ## Credits
 Characters and animations: [Quaternius](https://quaternius.com) (CC0). Engine: [Godot](https://godotengine.org) (MIT). Everything else is original to this project.
 
-`_old_ember/` holds the project's first game, *The Last Ember* (a 2.5D platformer), kept for reference.
+A plain-language version of the guide is in **[GUIDE.txt](GUIDE.txt)**.
+
+This game grew out of an earlier prototype, **[The Last Ember](https://github.com/huzii-iizuh/the-last-ember)** (a 2.5D platformer), which has its own repository.

@@ -201,7 +201,7 @@ as-hat/                         ← the Godot project ("res://")
 │   └── probe.gd                Debug helper (lists animation names)
 ├── art/                        Blender source files (.blend) — ignored by Godot
 ├── build/                      LastLight.exe (and the old TheLastEmber.exe)
-├── _old_ember/                 Archive of the previous game, The Last Ember — ignored by Godot
+├── _old_ember/                 Local archive of The Last Ember (not in this repo — see github.com/huzii-iizuh/the-last-ember)
 └── _downloads/                 Original Quaternius zips — ignored by Godot
 ```
 

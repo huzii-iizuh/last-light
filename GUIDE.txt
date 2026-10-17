@@ -1,0 +1,459 @@
+==============================================================
+  LAST LIGHT  -  THE EASY GUIDE
+  "Fire. Shadow. Time. One survives."
+==============================================================
+
+This file explains the whole game in simple words: what it is,
+how to play it, how to share it, what it is made of, and how
+all the pieces fit together.
+
+
+--------------------------------------------------------------
+1. WHAT IS THIS GAME?
+--------------------------------------------------------------
+
+Last Light is a fighting game for 2 fighters.
+
+You fight in a ruined stone arena at night, around an old
+lighthouse. You can fight:
+  - a computer player (the "Bot"), or
+  - a friend on the same computer (the screen splits in two).
+
+You win a ROUND when the other fighter's health reaches zero.
+You win the MATCH when you win 2 rounds.
+
+The game has 3 big ideas:
+
+  FIRE    - you can throw a fireball. It hurts and makes the
+            enemy burn for a few seconds.
+  SHADOW  - you can throw a shadow ball. It makes the enemy's
+            screen go almost black, so they cannot see or aim.
+  TIME    - a red circle (the "zone") gets smaller and smaller.
+            If you stand outside it, you lose health. This
+            forces the two fighters to get close.
+
+Weapons change by distance:
+  - Far away  -> you use a GUN.
+  - Close up  -> you use a KNIFE.
+  - Any time  -> you can PUNCH to push the enemy away.
+
+
+--------------------------------------------------------------
+2. HOW TO PLAY
+--------------------------------------------------------------
+
+Start the game:
+  - Double-click  build\LastLight.exe
+  - Choose VERSUS BOT or 2 PLAYERS.
+
+PLAYER 1 keys:
+  Move ............... W A S D
+  Jump ............... Space
+  Run faster ......... Shift
+  Shoot / Knife ...... Left mouse button (or F)
+  Punch .............. Right mouse button (or G)
+  Fire power ......... Q
+  Shadow power ....... E
+  Dodge roll ......... C (or Ctrl)
+  Reload ............. R
+  Pause .............. Esc
+
+PLAYER 2 keys:
+  Move ............... Arrow keys (or I J K L)
+  Jump ............... Numpad 0 (or M)
+  Run faster ......... Numpad Enter (or B)
+  Shoot / Knife ...... Numpad 1 (or O)
+  Punch .............. Numpad 2 (or U)
+  Fire power ......... Numpad 4 (or Y)
+  Shadow power ....... Numpad 5 (or H)
+  Dodge roll ......... Numpad 3 (or N)
+  Reload ............. Numpad 6 (or P)
+
+Game controllers also work. Controller 1 is Player 1,
+controller 2 is Player 2.
+
+Tips:
+  - The camera always looks at your enemy.
+  - While you roll, nothing can hurt you for a short moment.
+  - Hide behind walls: bullets and powers cannot go through.
+  - When the zone is small, punch the enemy out of it!
+
+
+--------------------------------------------------------------
+3. HOW TO SHARE THE GAME WITH A FRIEND
+--------------------------------------------------------------
+
+The whole game is ONE file: build\LastLight.exe (about 138 MB).
+Your friend does NOT need to install anything else.
+
+  Step 1. Right-click LastLight.exe -> Send to ->
+          Compressed (zipped) folder.
+  Step 2. Upload the zip to Google Drive, OneDrive or
+          WeTransfer, and send your friend the link.
+          (It is too big for e-mail.)
+  Step 3. Tell your friend: when Windows says
+          "Windows protected your PC", click
+          "More info" then "Run anyway".
+          This happens because the game is not "signed",
+          which costs money. The game is safe.
+  Step 4. The first start can take up to a minute.
+
+It is also on GitHub: download it from the "Releases" page of
+the last-light repository.
+
+What your friend's PC needs:
+  - Windows 10 or 11 (64-bit)
+  - A graphics card that supports DirectX 12
+    (most cards from 2016 or newer)
+  - 4 GB of memory and 150 MB of space
+
+
+--------------------------------------------------------------
+4. THE MVP (THE FIRST COMPLETE VERSION)
+--------------------------------------------------------------
+
+"MVP" means Minimum Viable Product: the smallest version of the
+game that is complete and fun. This is what it has:
+
+  [done] 2 fighters with full movement and animations
+  [done] Gun, knife and punch
+  [done] Fire power and Shadow power
+  [done] The shrinking red zone
+  [done] A Bot that fights back by itself
+  [done] 2-player split screen
+  [done] Rounds, knock-outs, winner screen, rematch
+  [done] Menus, pause, controls screen
+  [done] Health bars and on-screen information
+  [done] Sounds and music
+  [done] A Windows .exe file
+
+Saved for later (not in the MVP):
+  - Playing online over the internet
+  - Choosing your character and outfits
+  - More arenas
+  - Easy / Normal / Hard bot
+  - A settings menu (volume, screen size, keys)
+
+
+--------------------------------------------------------------
+5. WHAT THE GAME IS MADE WITH (THE "TECH STACK")
+--------------------------------------------------------------
+
+  Godot 4.7.2 ........ The game engine. It draws the 3D world,
+                       handles physics, sound and controls.
+                       Free and open source.
+  GDScript ........... The programming language the game logic
+                       is written in. It looks a lot like Python.
+  Blender 5.2 ........ 3D modelling program. The ruins, the
+                       lighthouse, the gun and the knife were
+                       made with small Blender scripts.
+  Quaternius packs ... Free (CC0) 3D characters and 43
+                       animations (running, shooting, punching,
+                       falling, and more).
+  DirectX 12 ......... The Windows graphics system the game uses.
+  Jolt Physics ....... Makes things collide and fall correctly.
+  Sound .............. Every sound was created by code, from math
+                       (no recorded sounds).
+
+
+--------------------------------------------------------------
+6. HOW THE FILES ARE ORGANISED (THE "HIERARCHY")
+--------------------------------------------------------------
+
+Think of the project folder like a house with rooms:
+
+  main.tscn ........ The front door. The game starts here.
+  project.godot .... The house rules: settings and controls.
+
+  scripts\ ......... The BRAINS. All the code lives here.
+      game.gd           runs the match: menu, rounds, cameras
+      fighter.gd        one fighter: moving, fighting, health
+      fighter_input.gd  lets a human control a fighter
+      fighter_ai.gd     lets the computer control a fighter
+      projectile.gd     the fireball and shadow ball
+      zone.gd           the shrinking red circle
+      view_hud.gd       the information on each player's screen
+      ui.gd             health bars, menus, big messages
+      sfx.gd            plays sounds and music
+
+  scenes\ .......... The BUILDING BLOCKS you can open in Godot.
+      arena.tscn        the arena (floor, walls, lighthouse)
+      fighter_1.tscn    Player 1
+      fighter_2.tscn    Player 2 / the Bot
+      projectile_*.tscn the fireball and the shadow ball
+      zone.tscn         the red zone
+
+  ui\ .............. Screens and menus.
+  assets\ .......... The downloaded characters and animations.
+  models\ .......... 3D shapes (ruins, lighthouse, weapons).
+  materials\ ....... What surfaces look like (stone, metal).
+  audio\ ........... All sound files.
+  shaders\ ......... Special screen effects (blindness, red edge).
+  tools\ ........... Helper scripts used to BUILD the game.
+                     They are not part of the finished game.
+  art\ ............. The original Blender files.
+  build\ ........... The finished game (.exe).
+  _downloads\ ...... The original downloaded packs.
+
+
+--------------------------------------------------------------
+7. HOW THE GAME IS PUT TOGETHER (SCENES)
+--------------------------------------------------------------
+
+Godot builds games from "scenes". A scene is a group of parts
+put together, and a scene can hold other scenes inside it.
+Like Lego: small blocks make bigger blocks.
+
+The main scene looks like this:
+
+  Main  (runs everything)
+   |
+   +-- Views  (the screen)
+   |     |
+   |     +-- Left half  (Player 1, or the full screen vs Bot)
+   |     |     +-- The World
+   |     |     |     +-- Lighting and fog
+   |     |     |     +-- The Moon
+   |     |     |     +-- The Arena
+   |     |     |     +-- The Red Zone
+   |     |     |     +-- Fighter 1
+   |     |     |     +-- Fighter 2
+   |     |     |     +-- Effects (sparks, bullets, fireballs)
+   |     |     +-- Camera for Player 1
+   |     |     +-- Player 1's screen information
+   |     |
+   |     +-- Right half  (Player 2 - hidden when playing the Bot)
+   |           +-- Camera for Player 2
+   |           +-- Player 2's screen information
+   |
+   +-- Sound and music
+   +-- Menus and health bars (on top of everything)
+
+Both halves of the screen look at the SAME world, just from two
+different cameras. That is how split screen works.
+
+Each fighter is made of:
+  - an invisible body shape (for bumping into things)
+  - the 3D character model
+  - a gun and a knife attached to the right hand
+  - an "animation tree" that mixes animations together
+  - a glowing ring under the feet (orange or purple)
+  - fire and shadow particle effects
+  - a "navigation agent" that helps the Bot find its way
+
+
+--------------------------------------------------------------
+8. THE RULES AND NUMBERS
+--------------------------------------------------------------
+
+Fighters:
+  Health ............. 100
+  Walk speed ......... 5.5 metres per second
+  Run speed .......... 8.5 metres per second
+  Dodge roll ......... safe from hits for 0.35 seconds
+
+Weapons:
+  Gun ................ 8 damage, 12 bullets, 1.4 s to reload
+                       Less accurate when you move or are blind
+  Knife .............. 18 damage, only when closer than 4 metres
+  Punch .............. 10 damage, pushes the enemy back
+
+Powers:
+  Fire ............... 15 damage + burning (4 per second, 3 s)
+                       Can be used every 7 seconds
+  Shadow ............. 5 damage + blind for 3.5 seconds
+                       Can be used every 12 seconds
+
+The Zone (Time):
+  Starts big (32 metres) and waits 20 seconds.
+  Then it shrinks to 5 metres over 90 seconds.
+  Outside it you lose 6 health every second.
+
+To change any number, open the matching script (for example
+scripts\fighter.gd) and change the value at the top.
+
+
+--------------------------------------------------------------
+9. HOW THE MAIN PARTS WORK (SIMPLE VERSION)
+--------------------------------------------------------------
+
+THE "BRAIN" IDEA
+  A fighter does not know who controls it. It only asks its
+  "brain" each moment: "what do you want to do?"
+  - A human brain reads the keyboard or controller.
+  - The Bot brain decides by itself.
+  Both give the same kind of answer, so the Bot follows exactly
+  the same rules as a human.
+
+THE BOT
+  Five times every second the Bot thinks:
+  - Do I have bullets? Then stay about 10 metres away and shoot.
+  - Am I winning, or is the zone small? Then go close and use
+    the knife.
+  - Am I blind? Then back away.
+  - Is a fireball coming? Then roll out of the way.
+  - Are my powers ready? Then sometimes use them.
+  - Always stay inside the zone.
+  It finds paths around walls using a "navigation map" that is
+  made when the game starts.
+
+SHOOTING
+  A shot is an invisible straight line from the gun to the
+  enemy, slightly shaken by "spread" so it can miss. Walls stop
+  the line. A bright streak shows where it went.
+
+ANIMATIONS
+  An "animation tree" mixes animations. For example, the legs can
+  keep running while the arms shoot. When a fighter is hit,
+  rolls or dies, the right animation plays over the top.
+
+SPLIT SCREEN
+  Two cameras look at the same world. Each half of the screen has
+  its own information, so when one player is blinded, only their
+  half goes dark.
+
+
+--------------------------------------------------------------
+10. WHERE EVERYTHING CAME FROM
+--------------------------------------------------------------
+
+  Characters and animations .. downloaded free from Quaternius
+  Ruins and lighthouse ....... made by tools\make_models.py
+  Gun and knife .............. made by tools\make_weapons.py
+  Stone look ................. made inside Godot from "noise"
+  Sounds and music ........... made by tools\synth.gd
+  Scenes, menus, controls .... first made by tools\bake_arena.gd
+
+IMPORTANT: now that the scenes exist, edit them directly in
+Godot. Running bake_arena.gd again would REPLACE your changes.
+
+
+--------------------------------------------------------------
+11. HOW TO MAKE A NEW .EXE
+--------------------------------------------------------------
+
+  1. Open the project in Godot.
+  2. Click Project -> Export...
+  3. Choose "Windows Desktop" and click "Export Project".
+  4. Save it as build\LastLight.exe
+
+Before sharing a new version, always:
+  - play one full match against the Bot
+  - play one full 2-player match
+  - click every menu button
+  - start the new .exe once to be sure it opens
+
+
+--------------------------------------------------------------
+12. TESTING
+--------------------------------------------------------------
+
+The game has a hidden test mode that takes a picture and closes:
+
+  LastLight.exe -- --shot=picture.png --wait=8
+
+Extra options:
+  --two        test split screen
+  --dist=3     start the enemies 3 metres apart (knife test)
+  --closeup    camera in front of Player 1
+  --menu       stay on the main menu
+
+What was tested: menus, the Bot fighting, damage, knock-outs,
+rounds, the winner screen, split screen and the .exe.
+What still needs real players: how fun and fair it feels.
+
+
+--------------------------------------------------------------
+13. KNOWN PROBLEMS
+--------------------------------------------------------------
+
+  - Only 2 characters (the free pack has 2). They wear simple
+    dark suits because the free models have no clothes.
+  - The Bot has only one difficulty.
+  - Needs DirectX 12. Very old PCs may not run it.
+  - Windows shows a warning the first time (not signed).
+  - First start is slow; later starts are fast.
+  - No settings menu yet.
+
+
+--------------------------------------------------------------
+14. WHAT COMES NEXT (ROADMAP)
+--------------------------------------------------------------
+
+  Next:   test with real players, fix balance, add Bot levels,
+          add a settings menu.
+  Soon:   choose your character, outfits, a second arena.
+  Later:  online play, a store page (itch.io / Steam).
+
+
+--------------------------------------------------------------
+15. GOOD HABITS FOR ANY SOFTWARE PROJECT
+--------------------------------------------------------------
+
+  SAVE HISTORY (Git/GitHub)
+    Git remembers every version of your project, so you can go
+    back if something breaks. This project is on GitHub.
+
+  VERSION NUMBERS
+    Use three numbers: 0.1.0
+      last number goes up  -> small bug fix      (0.1.1)
+      middle number up     -> new feature        (0.2.0)
+      first number up      -> big release        (1.0.0)
+
+  CHANGELOG
+    Keep a list of what changed in each version.
+
+  BACKUPS
+    Keep 3 copies, on 2 different devices, 1 somewhere else
+    (like GitHub or Google Drive).
+
+  BUG REPORTS
+    Write: what you did, what you expected, what happened,
+    which version, and add a screenshot.
+
+  PLAYTESTING
+    Watch people play WITHOUT helping. Write down where they get
+    stuck or bored.
+
+  LICENCES
+    Only use art, music and code you are allowed to use. Keep
+    the licence files.
+
+  SPEED
+    Aim for 60 pictures per second (60 FPS). Split screen is the
+    hardest mode, so test it on the slowest PC.
+
+
+--------------------------------------------------------------
+16. CREDITS AND LICENCES
+--------------------------------------------------------------
+
+  Godot Engine ................ MIT licence (free to use)
+  Quaternius characters ....... CC0 (free for anything)
+  Quaternius animations ....... CC0 (free for anything)
+  Everything else ............. made for this project
+
+  CC0 means "public domain": anyone may use it for anything.
+
+
+--------------------------------------------------------------
+17. WORD LIST
+--------------------------------------------------------------
+
+  Engine ........... the program that runs the game (Godot)
+  Scene ............ a group of parts put together
+  Node ............. one single part inside a scene
+  Script ........... a file of code
+  MVP .............. the first small but complete version
+  Bot / AI ......... a fighter controlled by the computer
+  Hitscan .......... a shot that hits instantly in a line
+  Projectile ....... something that flies (fireball)
+  Cooldown ......... waiting time before you can use it again
+  Lock-on .......... the camera always faces the enemy
+  Split screen ..... the screen cut in two for two players
+  Navigation map ... a map of where the Bot can walk
+  Animation tree ... mixes several animations together
+  Export ........... turning the project into an .exe
+  Repository/Repo .. a project's online home on GitHub
+  Release .......... a downloadable version on GitHub
+  CC0 .............. free for anyone to use for anything

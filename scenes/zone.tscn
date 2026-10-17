@@ -1,0 +1,43 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/zone.gd" id="1_g7a44"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxmtb"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.8784314, 0.15686275, 0.22745098, 0.06)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vqdlh"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 5.0
+radial_segments = 128
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuoua"]
+albedo_color = Color(0.8784314, 0.15686275, 0.22745098, 1)
+emission_enabled = true
+emission = Color(0.8784314, 0.15686275, 0.22745098, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_8v874"]
+inner_radius = 0.992
+rings = 128
+
+[node name="Zone" type="Node3D" unique_id=1090349116]
+script = ExtResource("1_g7a44")
+
+[node name="Wall" type="MeshInstance3D" parent="." unique_id=848281900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_qxmtb")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_vqdlh")
+
+[node name="Edge" type="MeshInstance3D" parent="." unique_id=977061114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_nuoua")
+cast_shadow = 0
+mesh = SubResource("TorusMesh_8v874")

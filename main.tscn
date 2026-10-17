@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_ycdy4"]
+[ext_resource type="Environment" path="res://arena_environment.tres" id="2_w48qg"]
+[ext_resource type="PackedScene" path="res://scenes/arena.tscn" id="3_vivmo"]
+[ext_resource type="PackedScene" path="res://scenes/zone.tscn" id="4_2cqfq"]
+[ext_resource type="Script" path="res://scripts/zone.gd" id="5_yaehf"]
+[ext_resource type="PackedScene" path="res://scenes/fighter_1.tscn" id="6_074og"]
+[ext_resource type="Script" path="res://scripts/fighter.gd" id="7_cegan"]
+[ext_resource type="PackedScene" path="res://scenes/fighter_2.tscn" id="8_82xsv"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="9_getpj"]
+[ext_resource type="Script" path="res://scripts/view_hud.gd" id="10_ryguw"]
+[ext_resource type="Script" path="res://scripts/sfx.gd" id="11_d13ii"]
+[ext_resource type="PackedScene" path="res://ui/ui.tscn" id="12_1u8w0"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="13_0odxb"]
+
+[node name="Main" type="Node" unique_id=2048806229]
+process_mode = 3
+script = ExtResource("1_ycdy4")
+
+[node name="Views" type="HBoxContainer" parent="." unique_id=2049802265]
+process_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 4
+
+[node name="View1" type="SubViewportContainer" parent="Views" unique_id=1779182947]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="Views/View1" unique_id=235869242]
+msaa_3d = 1
+
+[node name="World" type="Node3D" parent="Views/View1/Viewport" unique_id=1647600928]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Views/View1/Viewport/World" unique_id=642774152]
+environment = ExtResource("2_w48qg")
+
+[node name="Moon" type="DirectionalLight3D" parent="Views/View1/Viewport/World" unique_id=1472289770]
+transform = Transform3D(0.81915206, 0.43938506, -0.36868784, 0, 0.64278764, 0.76604444, 0.57357645, -0.62750685, 0.5265408, 0, 0, 0)
+light_color = Color(0.5529412, 0.6039216, 0.84705883, 1)
+light_energy = 0.7
+shadow_enabled = true
+directional_shadow_max_distance = 60.0
+
+[node name="Arena" type="Node3D" parent="Views/View1/Viewport/World" unique_id=1647934198 instance=ExtResource("3_vivmo")]
+
+[node name="Zone" type="Node3D" parent="Views/View1/Viewport/World" unique_id=1090349116 instance=ExtResource("4_2cqfq")]
+script = ExtResource("5_yaehf")
+
+[node name="Fighter1" type="CharacterBody3D" parent="Views/View1/Viewport/World" unique_id=1014600318 instance=ExtResource("6_074og")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("7_cegan")
+display_name = "PLAYER 1"
+
+[node name="Fighter2" type="CharacterBody3D" parent="Views/View1/Viewport/World" unique_id=1614990470 instance=ExtResource("8_82xsv")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("7_cegan")
+player_index = 1
+display_name = "PLAYER 2"
+team_color = Color(0.47843137, 0.23529412, 1, 1)
+
+[node name="Effects" type="Node3D" parent="Views/View1/Viewport/World" unique_id=264754792]
+
+[node name="Camera" type="Camera3D" parent="Views/View1/Viewport" unique_id=1866403266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 26)
+fov = 60.0
+
+[node name="Hud" type="CanvasLayer" parent="Views/View1/Viewport" unique_id=698965455 instance=ExtResource("9_getpj")]
+script = ExtResource("10_ryguw")
+
+[node name="View2" type="SubViewportContainer" parent="Views" unique_id=1094356787]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="Views/View2" unique_id=1075344538]
+msaa_3d = 1
+
+[node name="Camera" type="Camera3D" parent="Views/View2/Viewport" unique_id=1047657150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 26)
+fov = 60.0
+
+[node name="Hud" type="CanvasLayer" parent="Views/View2/Viewport" unique_id=2123504757 instance=ExtResource("9_getpj")]
+script = ExtResource("10_ryguw")
+
+[node name="Sfx" type="Node" parent="." unique_id=1356125119]
+script = ExtResource("11_d13ii")
+
+[node name="Music" type="AudioStreamPlayer" parent="Sfx" unique_id=866022811]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=823731698 instance=ExtResource("12_1u8w0")]
+process_mode = 3
+layer = 5
+script = ExtResource("13_0odxb")

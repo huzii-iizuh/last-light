@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://materials/shadow.tres" id="1_q6sow"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/thorns.res" id="2_6q5c0"]
+[ext_resource type="Script" path="res://scripts/kill_area.gd" id="3_f4kdn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hq6t"]
+size = Vector3(1.5, 0.45, 2)
+
+[node name="Thorns" type="Node3D" unique_id=141891364]
+
+[node name="Shards" type="MeshInstance3D" parent="." unique_id=134854374]
+material_override = ExtResource("1_q6sow")
+mesh = ExtResource("2_6q5c0")
+
+[node name="Kill" type="Area3D" parent="." unique_id=1401827085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_f4kdn")
+
+[node name="Shape" type="CollisionShape3D" parent="Kill" unique_id=401371736]
+shape = SubResource("BoxShape3D_0hq6t")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1341585584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 1)
+light_color = Color(0.47843137, 0.23529412, 1, 1)
+light_energy = 0.8
+omni_range = 3.0

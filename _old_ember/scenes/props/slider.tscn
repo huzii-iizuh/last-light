@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/freezable.gd" id="1_altj0"]
+[ext_resource type="Material" path="res://materials/stone_top.tres" id="2_e3g8i"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/slab.res" id="3_irfdw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfe1m"]
+resource_local_to_scene = true
+albedo_color = Color(0.48235294, 0.654902, 1, 1)
+emission_enabled = true
+emission = Color(0.48235294, 0.654902, 1, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_g32u8"]
+size = Vector3(2.56, 0.12, 2.56)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2a8v"]
+size = Vector3(2.5, 0.5, 2.5)
+
+[node name="Slider" type="Node3D" unique_id=1475205594 node_paths=PackedStringArray("body", "frozen_light")]
+script = ExtResource("1_altj0")
+kind = 2
+body = NodePath("Body")
+accent = SubResource("StandardMaterial3D_vfe1m")
+frozen_light = NodePath("FrozenLight")
+
+[node name="FrozenLight" type="OmniLight3D" parent="." unique_id=1744686255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4)
+light_color = Color(0.48235294, 0.654902, 1, 1)
+light_energy = 0.0
+omni_range = 4.5
+
+[node name="Body" type="AnimatableBody3D" parent="." unique_id=1635235619]
+
+[node name="Slab" type="MeshInstance3D" parent="Body" unique_id=1990720433]
+material_override = ExtResource("2_e3g8i")
+mesh = ExtResource("3_irfdw")
+
+[node name="Band" type="MeshInstance3D" parent="Body" unique_id=836980132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12, 0)
+material_override = SubResource("StandardMaterial3D_vfe1m")
+mesh = SubResource("BoxMesh_g32u8")
+
+[node name="Shape" type="CollisionShape3D" parent="Body" unique_id=353796972]
+shape = SubResource("BoxShape3D_k2a8v")

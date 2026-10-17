@@ -1,0 +1,126 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/flame.res" id="2_qhqgy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dqkch"]
+radius = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+albedo_color = Color(1, 0.8235294, 0.47843137, 1)
+emission_enabled = true
+emission = Color(1, 0.8235294, 0.47843137, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tuyoq"]
+radius = 0.09
+height = 0.18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjrip"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.4, 0.5819608, 0, 0.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_smehm"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.4, 0.93333334, 0.30745098, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ur7pv"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1.6, 1.3176471, 0.76549023, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4r1p"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.6666667, 0.21960784, 0.015)
+
+[sub_resource type="SphereMesh" id="SphereMesh_d2wvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v2ag"]
+albedo_color = Color(1, 0.41568628, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.41568628, 0, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_jej6c"]
+material = SubResource("StandardMaterial3D_3v2ag")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_f1ej7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player" type="CharacterBody3D" unique_id=719529660]
+collision_layer = 2
+floor_snap_length = 0.3
+script = ExtResource("1_g2els")
+
+[node name="Shape" type="CollisionShape3D" parent="." unique_id=342095860]
+shape = SubResource("SphereShape3D_dqkch")
+
+[node name="Visual" type="Node3D" parent="." unique_id=1824379808]
+
+[node name="Core" type="MeshInstance3D" parent="Visual" unique_id=1571041065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12, 0)
+material_override = SubResource("StandardMaterial3D_qlg0r")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_tuyoq")
+
+[node name="Tongue1" type="MeshInstance3D" parent="Visual" unique_id=826352733]
+transform = Transform3D(0.42, 0, 0, 0, 0.78, 0, 0, 0, 0.42, 0, -0.34, 0)
+material_override = SubResource("StandardMaterial3D_fjrip")
+cast_shadow = 0
+mesh = ExtResource("2_qhqgy")
+
+[node name="Tongue2" type="MeshInstance3D" parent="Visual" unique_id=816558551]
+transform = Transform3D(0.26, 0, 0, 0, 0.55, 0, 0, 0, 0.26, 0.09, -0.28, 0.03)
+material_override = SubResource("StandardMaterial3D_smehm")
+cast_shadow = 0
+mesh = ExtResource("2_qhqgy")
+
+[node name="Tongue3" type="MeshInstance3D" parent="Visual" unique_id=1019969841]
+transform = Transform3D(0.18, 0, 0, 0, 0.4, 0, 0, 0, 0.18, -0.03, -0.26, 0.05)
+material_override = SubResource("StandardMaterial3D_ur7pv")
+cast_shadow = 0
+mesh = ExtResource("2_qhqgy")
+
+[node name="Halo" type="MeshInstance3D" parent="Visual" unique_id=1716695348]
+material_override = SubResource("StandardMaterial3D_y4r1p")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_d2wvv")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1192635281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.3)
+light_color = Color(1, 0.6666667, 0.21960784, 1)
+light_energy = 2.4
+shadow_enabled = true
+omni_range = 7.5
+
+[node name="Trail" type="CPUParticles3D" parent="." unique_id=1957189038]
+cast_shadow = 0
+amount = 36
+lifetime = 0.7
+mesh = SubResource("SphereMesh_jej6c")
+emission_shape = 1
+emission_sphere_radius = 0.15
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 1.2, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.9
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_f1ej7")

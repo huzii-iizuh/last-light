@@ -1,0 +1,635 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_ks8t7"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2_wl5ax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkava"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.55)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.25)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf0e0"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 0.41568628, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.5909804, 0.3, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obcwv"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.55)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.25)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo1jx"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(0.47843137, 0.23529412, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.634902, 0.46470588, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gycre"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 0.41568628, 0, 0.22)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.41568628, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UI" type="CanvasLayer" unique_id=823731698]
+layer = 5
+script = ExtResource("1_ks8t7")
+
+[node name="Root" type="Control" parent="." unique_id=1818448844]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("2_wl5ax")
+
+[node name="TopBar" type="HBoxContainer" parent="Root" unique_id=1946445058]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = -24.0
+offset_bottom = 70.0
+theme_override_constants/separation = 14
+
+[node name="P1Side" type="VBoxContainer" parent="Root/TopBar" unique_id=1068215252]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+
+[node name="Row" type="HBoxContainer" parent="Root/TopBar/P1Side" unique_id=911720867]
+layout_mode = 2
+
+[node name="P1Name" type="Label" parent="Root/TopBar/P1Side/Row" unique_id=552492193]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.41568628, 0, 1)
+text = "P1"
+
+[node name="P1Wins" type="Label" parent="Root/TopBar/P1Side/Row" unique_id=486669760]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "○○"
+horizontal_alignment = 1
+
+[node name="P1Bar" type="ProgressBar" parent="Root/TopBar/P1Side" unique_id=1610169677]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 18)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vkava")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tf0e0")
+value = 100.0
+show_percentage = false
+
+[node name="Info" type="Label" parent="Root/TopBar" unique_id=1089370176]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "ROUND 1"
+horizontal_alignment = 1
+
+[node name="P2Side" type="VBoxContainer" parent="Root/TopBar" unique_id=128450376]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+
+[node name="Row" type="HBoxContainer" parent="Root/TopBar/P2Side" unique_id=514655811]
+layout_mode = 2
+
+[node name="P2Wins" type="Label" parent="Root/TopBar/P2Side/Row" unique_id=1787472356]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "○○"
+horizontal_alignment = 1
+
+[node name="P2Name" type="Label" parent="Root/TopBar/P2Side/Row" unique_id=1436596286]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.47843137, 0.23529412, 1, 1)
+text = "P2"
+horizontal_alignment = 2
+
+[node name="P2Bar" type="ProgressBar" parent="Root/TopBar/P2Side" unique_id=2076676162]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 18)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_obcwv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bo1jx")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Banner" type="Label" parent="Root" unique_id=117039961]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(1, 0.8235294, 0.47843137, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.41568628, 0, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="ColorRect" parent="Root" unique_id=841630737]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.05, 0.45)
+
+[node name="Center" type="CenterContainer" parent="Root/Menu" unique_id=1013733771]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Column" type="VBoxContainer" parent="Root/Menu/Center" unique_id=218745464]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="Root/Menu/Center/Column" unique_id=1320718424]
+layout_mode = 2
+theme_override_font_sizes/font_size = 84
+theme_override_colors/font_color = Color(1, 0.8235294, 0.47843137, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.41568628, 0, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 22
+text = "LAST LIGHT"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Root/Menu/Center/Column" unique_id=1127410994]
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Fire.  Shadow.  Time.   One survives."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Root/Menu/Center/Column" unique_id=1087069540]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="VsAI" type="Button" parent="Root/Menu/Center/Column" unique_id=1957522958]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_gycre")
+theme_override_font_sizes/font_size = 28
+text = "VERSUS BOT"
+
+[node name="TwoPlayers" type="Button" parent="Root/Menu/Center/Column" unique_id=909488414]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(340, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "2 PLAYERS  (SPLIT SCREEN)"
+
+[node name="ControlsButton" type="Button" parent="Root/Menu/Center/Column" unique_id=1016161726]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "CONTROLS"
+
+[node name="MenuQuit" type="Button" parent="Root/Menu/Center/Column" unique_id=247046707]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "QUIT"
+
+[node name="Controls" type="ColorRect" parent="Root" unique_id=1056792803]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.05, 0.85)
+
+[node name="Center" type="CenterContainer" parent="Root/Controls" unique_id=902006605]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Column" type="VBoxContainer" parent="Root/Controls/Center" unique_id=1090040023]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Heading" type="Label" parent="Root/Controls/Center/Column" unique_id=1940345026]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+theme_override_colors/font_color = Color(1, 0.8235294, 0.47843137, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.41568628, 0, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 22
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Root/Controls/Center/Column" unique_id=692365411]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="Cell" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1196947152]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+horizontal_alignment = 2
+
+[node name="Cell2" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=185641636]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "PLAYER 1"
+horizontal_alignment = 1
+
+[node name="Cell3" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1818596161]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "PLAYER 2"
+horizontal_alignment = 1
+
+[node name="Cell4" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1388096449]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Move"
+horizontal_alignment = 2
+
+[node name="Cell5" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=361364086]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "W A S D"
+horizontal_alignment = 1
+
+[node name="Cell6" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1560080595]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Arrows  or  I J K L"
+horizontal_alignment = 1
+
+[node name="Cell7" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1632486986]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Jump / Sprint"
+horizontal_alignment = 2
+
+[node name="Cell8" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=46847206]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Space / Shift"
+horizontal_alignment = 1
+
+[node name="Cell9" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=30418209]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num0 / NumEnter  or  M / B"
+horizontal_alignment = 1
+
+[node name="Cell10" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1024310942]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Shoot (far) · Knife (near)"
+horizontal_alignment = 2
+
+[node name="Cell11" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1430995477]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Left mouse  or  F"
+horizontal_alignment = 1
+
+[node name="Cell12" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=548508412]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num1  or  O"
+horizontal_alignment = 1
+
+[node name="Cell13" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1779994601]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Punch (shove)"
+horizontal_alignment = 2
+
+[node name="Cell14" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1799567470]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Right mouse  or  G"
+horizontal_alignment = 1
+
+[node name="Cell15" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=2068840910]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num2  or  U"
+horizontal_alignment = 1
+
+[node name="Cell16" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1541688435]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "FIRE power"
+horizontal_alignment = 2
+
+[node name="Cell17" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1448401373]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Cell18" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=623957454]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num4  or  Y"
+horizontal_alignment = 1
+
+[node name="Cell19" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=301294740]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "SHADOW power (blind)"
+horizontal_alignment = 2
+
+[node name="Cell20" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1476520297]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "E"
+horizontal_alignment = 1
+
+[node name="Cell21" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=426072404]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num5  or  H"
+horizontal_alignment = 1
+
+[node name="Cell22" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1520122851]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Dodge roll"
+horizontal_alignment = 2
+
+[node name="Cell23" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1376511473]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "C  or  Ctrl"
+horizontal_alignment = 1
+
+[node name="Cell24" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=688922302]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num3  or  N"
+horizontal_alignment = 1
+
+[node name="Cell25" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1328662821]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Reload"
+horizontal_alignment = 2
+
+[node name="Cell26" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=366836549]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "R"
+horizontal_alignment = 1
+
+[node name="Cell27" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=73707013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Num6  or  P"
+horizontal_alignment = 1
+
+[node name="Cell28" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1826777857]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Gamepad"
+horizontal_alignment = 2
+
+[node name="Cell29" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1660267188]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Pad 1"
+horizontal_alignment = 1
+
+[node name="Cell30" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=693858858]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Pad 2"
+horizontal_alignment = 1
+
+[node name="Cell31" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=621661240]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.6666667, 0.21960784, 1)
+text = "Pause"
+horizontal_alignment = 2
+
+[node name="Cell32" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=1696464615]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Esc / Start"
+horizontal_alignment = 1
+
+[node name="Cell33" type="Label" parent="Root/Controls/Center/Column/Grid" unique_id=270008629]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+
+[node name="Rule" type="Label" parent="Root/Controls/Center/Column" unique_id=115942171]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "TIME: the red zone shrinks — stay inside it.  Guns far, knives near."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Root/Controls/Center/Column" unique_id=334367013]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Root/Controls/Center/Column" unique_id=1945079808]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "BACK"
+
+[node name="Pause" type="ColorRect" parent="Root" unique_id=2043819070]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.05, 0.6)
+
+[node name="Center" type="CenterContainer" parent="Root/Pause" unique_id=1192519026]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Column" type="VBoxContainer" parent="Root/Pause/Center" unique_id=180352384]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Heading" type="Label" parent="Root/Pause/Center/Column" unique_id=1834838589]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+theme_override_colors/font_color = Color(1, 0.8235294, 0.47843137, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.41568628, 0, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 22
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Root/Pause/Center/Column" unique_id=1869914833]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Root/Pause/Center/Column" unique_id=2060783105]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "RESUME"
+
+[node name="PauseRematch" type="Button" parent="Root/Pause/Center/Column" unique_id=695227992]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "RESTART MATCH"
+
+[node name="PauseMenu" type="Button" parent="Root/Pause/Center/Column" unique_id=1090175509]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "MAIN MENU"
+
+[node name="PauseQuit" type="Button" parent="Root/Pause/Center/Column" unique_id=2016243768]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "QUIT"
+
+[node name="MatchEnd" type="ColorRect" parent="Root" unique_id=1030231024]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.02, 0.05, 0.45)
+
+[node name="Center" type="CenterContainer" parent="Root/MatchEnd" unique_id=281193445]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Column" type="VBoxContainer" parent="Root/MatchEnd/Center" unique_id=417531926]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="EndTitle" type="Label" parent="Root/MatchEnd/Center/Column" unique_id=326278092]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(1, 0.8235294, 0.47843137, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.41568628, 0, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 22
+text = "PLAYER 1 WINS"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Root/MatchEnd/Center/Column" unique_id=1148190049]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Rematch" type="Button" parent="Root/MatchEnd/Center/Column" unique_id=1725994554]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "REMATCH"
+
+[node name="EndMenu" type="Button" parent="Root/MatchEnd/Center/Column" unique_id=954418237]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "MAIN MENU"
+
+[node name="EndQuit" type="Button" parent="Root/MatchEnd/Center/Column" unique_id=1355900854]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "QUIT"

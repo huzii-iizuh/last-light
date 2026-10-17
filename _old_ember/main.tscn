@@ -1,0 +1,86 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_kek77"]
+[ext_resource type="Environment" path="res://environment.tres" id="2_4c57u"]
+[ext_resource type="PackedScene" path="res://scenes/level.tscn" id="3_efxa6"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="4_dg77c"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="5_ycdy4"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="6_w48qg"]
+[ext_resource type="Script" path="res://scripts/sfx.gd" id="7_vivmo"]
+[ext_resource type="PackedScene" path="res://ui/ui.tscn" id="8_2cqfq"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="9_yaehf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_074og"]
+albedo_color = Color(1, 0.6666667, 0.21960784, 1)
+emission_enabled = true
+emission = Color(1, 0.6666667, 0.21960784, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_cegan"]
+material = SubResource("StandardMaterial3D_074og")
+radius = 0.035
+height = 0.07
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_82xsv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Main" type="Node" unique_id=487692631]
+process_mode = 3
+script = ExtResource("1_kek77")
+
+[node name="World" type="Node3D" parent="." unique_id=657425106]
+process_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=501537880]
+environment = ExtResource("2_4c57u")
+
+[node name="Moon" type="DirectionalLight3D" parent="World" unique_id=350128354]
+transform = Transform3D(0.8660254, 0.28678823, -0.40957603, 0, 0.81915206, 0.57357645, 0.5, -0.49673176, 0.7094065, 0, 0, 0)
+light_color = Color(0.42745098, 0.48235294, 0.72156864, 1)
+light_energy = 0.35
+
+[node name="Camera" type="Camera3D" parent="World" unique_id=1066788951]
+transform = Transform3D(1, 0, 0, 0, 0.99254614, 0.12186935, 0, -0.12186935, 0.99254614, 2.5, 2.2, 13)
+fov = 45.0
+
+[node name="Embers" type="CPUParticles3D" parent="World/Camera" unique_id=634534153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+cast_shadow = 0
+amount = 50
+lifetime = 7.0
+preprocess = 7.0
+mesh = SubResource("SphereMesh_cegan")
+emission_shape = 3
+emission_box_extents = Vector3(16, 9, 5)
+direction = Vector3(0.3, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0.05, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+scale_amount_min = 0.4
+scale_amount_curve = SubResource("Curve_82xsv")
+
+[node name="Level" type="Node3D" parent="World" unique_id=1001180469 node_paths=PackedStringArray("far_layer", "far_lighthouse", "lighthouse") instance=ExtResource("3_efxa6")]
+script = ExtResource("4_dg77c")
+far_layer = NodePath("FarLayer")
+far_lighthouse = NodePath("FarLayer/FarLighthouse")
+lighthouse = NodePath("Props/Lighthouse")
+
+[node name="Player" type="CharacterBody3D" parent="World" unique_id=719529660 instance=ExtResource("5_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 2
+floor_snap_length = 0.3
+script = ExtResource("6_w48qg")
+
+[node name="Sfx" type="Node" parent="." unique_id=1419488974]
+script = ExtResource("7_vivmo")
+
+[node name="Ambient" type="AudioStreamPlayer" parent="Sfx" unique_id=1560056162]
+
+[node name="Warm" type="AudioStreamPlayer" parent="Sfx" unique_id=837168186]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=452674591 instance=ExtResource("8_2cqfq")]
+script = ExtResource("9_yaehf")

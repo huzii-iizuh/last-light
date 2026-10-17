@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_qs3qo"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lh_stone.res" id="2_kunvk"]
+[ext_resource type="Material" path="res://materials/metal.tres" id="3_4delj"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lh_metal.res" id="4_c25n3"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lh_glass.res" id="5_kkgri"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lh_door.res" id="6_84pij"]
+
+[sub_resource type="Gradient" id="Gradient_bfbl1"]
+colors = PackedColorArray(0.55, 0.55, 0.55, 1, 1.1, 1.1, 1.1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uh50s"]
+frequency = 0.03
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_upbsk"]
+noise = SubResource("FastNoiseLite_uh50s")
+color_ramp = SubResource("Gradient_bfbl1")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_otmoi"]
+frequency = 0.06
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xgvve"]
+noise = SubResource("FastNoiseLite_otmoi")
+seamless = true
+as_normal_map = true
+bump_strength = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh3kj"]
+albedo_color = Color(0.22745098, 0.21176471, 0.26666668, 1)
+albedo_texture = SubResource("NoiseTexture2D_upbsk")
+roughness = 0.85
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = SubResource("NoiseTexture2D_xgvve")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs1iw"]
+resource_local_to_scene = true
+albedo_color = Color(0.41960785, 0.3647059, 0.3137255, 1)
+emission_enabled = true
+emission = Color(0.41960785, 0.3647059, 0.3137255, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dud50"]
+albedo_color = Color(1, 0.41568628, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.41568628, 0, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0r7p"]
+resource_local_to_scene = true
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.8235294, 0.47843137, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y83wk"]
+top_radius = 3.5
+bottom_radius = 0.2
+height = 36.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ncp4n"]
+top_radius = 3.5
+bottom_radius = 0.2
+height = 36.0
+
+[node name="Lighthouse" type="Node3D" unique_id=1915624102]
+script = ExtResource("1_qs3qo")
+
+[node name="Stone" type="MeshInstance3D" parent="." unique_id=827512185]
+material_override = SubResource("StandardMaterial3D_dh3kj")
+mesh = ExtResource("2_kunvk")
+
+[node name="Metal" type="MeshInstance3D" parent="." unique_id=1530599327]
+material_override = ExtResource("3_4delj")
+mesh = ExtResource("4_c25n3")
+
+[node name="Glass" type="MeshInstance3D" parent="." unique_id=2053758217]
+material_override = SubResource("StandardMaterial3D_hs1iw")
+mesh = ExtResource("5_kkgri")
+
+[node name="Door" type="MeshInstance3D" parent="." unique_id=2055453207]
+material_override = SubResource("StandardMaterial3D_dud50")
+mesh = ExtResource("6_84pij")
+
+[node name="BeaconLight" type="OmniLight3D" parent="." unique_id=1549075643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.2, 1.6)
+light_color = Color(1, 0.8235294, 0.47843137, 1)
+light_energy = 0.0
+omni_range = 50.0
+
+[node name="Beam" type="Node3D" parent="." unique_id=918992185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.15, 0)
+visible = false
+
+[node name="Beam2" type="MeshInstance3D" parent="Beam" unique_id=170271806]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -18, 0, 0)
+material_override = SubResource("StandardMaterial3D_j0r7p")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_y83wk")
+
+[node name="Beam1" type="MeshInstance3D" parent="Beam" unique_id=1678887011]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 18, 0, 0)
+material_override = SubResource("StandardMaterial3D_j0r7p")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_ncp4n")

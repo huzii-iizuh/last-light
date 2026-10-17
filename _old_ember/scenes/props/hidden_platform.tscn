@@ -1,0 +1,86 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hidden_platform.gd" id="1_t4ky7"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/slab.res" id="2_u2nbr"]
+
+[sub_resource type="Gradient" id="Gradient_s5d5h"]
+colors = PackedColorArray(0.55, 0.55, 0.55, 1, 1.1, 1.1, 1.1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7nqho"]
+frequency = 0.03
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_shc5e"]
+noise = SubResource("FastNoiseLite_7nqho")
+color_ramp = SubResource("Gradient_s5d5h")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dl4nl"]
+frequency = 0.06
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y80vj"]
+noise = SubResource("FastNoiseLite_dl4nl")
+seamless = true
+as_normal_map = true
+bump_strength = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d168i"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.27058825, 0.25490198, 0.30588236, 0.06)
+albedo_texture = SubResource("NoiseTexture2D_shc5e")
+roughness = 0.7
+emission_enabled = true
+emission = Color(1, 0.41568628, 0, 1)
+emission_energy_multiplier = 0.0
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = SubResource("NoiseTexture2D_y80vj")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vakgq"]
+resource_local_to_scene = true
+size = Vector3(2.5, 0.5, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsom"]
+albedo_color = Color(1, 0.6666667, 0.21960784, 1)
+emission_enabled = true
+emission = Color(1, 0.6666667, 0.21960784, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_78sef"]
+material = SubResource("StandardMaterial3D_mvsom")
+radius = 0.04
+height = 0.08
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_dl2qk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="HiddenPlatform" type="StaticBody3D" unique_id=1836107173]
+script = ExtResource("1_t4ky7")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=988504237]
+material_override = SubResource("StandardMaterial3D_d168i")
+mesh = ExtResource("2_u2nbr")
+
+[node name="Shape" type="CollisionShape3D" parent="." unique_id=404679613]
+shape = SubResource("BoxShape3D_vakgq")
+disabled = true
+
+[node name="Hint" type="CPUParticles3D" parent="." unique_id=379872864]
+cast_shadow = 0
+lifetime = 2.0
+mesh = SubResource("SphereMesh_78sef")
+emission_shape = 3
+emission_box_extents = Vector3(1.25, 0.1, 0.8)
+direction = Vector3(0, 1, 0)
+spread = 15.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+scale_amount_curve = SubResource("Curve_dl2qk")

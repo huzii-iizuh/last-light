@@ -1,0 +1,92 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/freezable.gd" id="1_0kx6w"]
+[ext_resource type="Material" path="res://materials/metal.tres" id="2_misj4"]
+[ext_resource type="Material" path="res://materials/shadow.tres" id="3_nyh0c"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/blade.res" id="4_0lf0s"]
+[ext_resource type="Script" path="res://scripts/kill_area.gd" id="5_ol2sw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b144r"]
+resource_local_to_scene = true
+albedo_color = Color(0.48235294, 0.654902, 1, 1)
+emission_enabled = true
+emission = Color(0.48235294, 0.654902, 1, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_tu0ig"]
+size = Vector3(0.22, 2.2, 0.22)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avhqr"]
+size = Vector3(0.6, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vy1ou"]
+size = Vector3(1.6, 0.6, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mhtso"]
+size = Vector3(0.3, 10, 0.3)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bajri"]
+radius = 0.32
+height = 0.64
+
+[sub_resource type="TorusMesh" id="TorusMesh_el1ou"]
+inner_radius = 0.4
+outer_radius = 0.55
+
+[node name="Rotor" type="Node3D" unique_id=919638539 node_paths=PackedStringArray("body", "frozen_light")]
+script = ExtResource("1_0kx6w")
+body = NodePath("Arm")
+accent = SubResource("StandardMaterial3D_b144r")
+frozen_light = NodePath("FrozenLight")
+speed = 2.2
+
+[node name="FrozenLight" type="OmniLight3D" parent="." unique_id=1451967012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4)
+light_color = Color(0.48235294, 0.654902, 1, 1)
+light_energy = 0.0
+omni_range = 4.5
+
+[node name="Arm" type="Node3D" parent="." unique_id=1647253424]
+
+[node name="Rod" type="MeshInstance3D" parent="Arm" unique_id=765244336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = ExtResource("2_misj4")
+mesh = SubResource("BoxMesh_tu0ig")
+
+[node name="Blade" type="MeshInstance3D" parent="Arm" unique_id=389175039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+material_override = ExtResource("3_nyh0c")
+mesh = ExtResource("4_0lf0s")
+
+[node name="KillRod" type="Area3D" parent="Arm" unique_id=1881926200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_ol2sw")
+
+[node name="Shape" type="CollisionShape3D" parent="Arm/KillRod" unique_id=2030744917]
+shape = SubResource("BoxShape3D_avhqr")
+
+[node name="KillBlade" type="Area3D" parent="Arm" unique_id=1477646722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_ol2sw")
+
+[node name="Shape" type="CollisionShape3D" parent="Arm/KillBlade" unique_id=819500708]
+shape = SubResource("BoxShape3D_vy1ou")
+
+[node name="Hanger" type="MeshInstance3D" parent="." unique_id=1173322416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -0.6)
+material_override = ExtResource("2_misj4")
+mesh = SubResource("BoxMesh_mhtso")
+
+[node name="Hub" type="MeshInstance3D" parent="." unique_id=656925069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
+material_override = ExtResource("2_misj4")
+mesh = SubResource("SphereMesh_bajri")
+
+[node name="Ring" type="MeshInstance3D" parent="." unique_id=764214042]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.2)
+material_override = SubResource("StandardMaterial3D_b144r")
+mesh = SubResource("TorusMesh_el1ou")

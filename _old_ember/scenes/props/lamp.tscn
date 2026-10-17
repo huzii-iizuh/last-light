@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/lamp.gd" id="1_jide0"]
+[ext_resource type="Material" path="res://materials/metal.tres" id="2_2xsn7"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lamp_metal.res" id="3_8ivjm"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/lamp_glass.res" id="4_fdo8x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gshpy"]
+resource_local_to_scene = true
+albedo_color = Color(0.3529412, 0.2901961, 0.23529412, 1)
+emission_enabled = true
+emission = Color(0.3529412, 0.2901961, 0.23529412, 1)
+emission_energy_multiplier = 0.2
+
+[node name="Lamp" type="Node3D" unique_id=1447899421]
+script = ExtResource("1_jide0")
+
+[node name="Metal" type="MeshInstance3D" parent="." unique_id=1874796115]
+material_override = ExtResource("2_2xsn7")
+mesh = ExtResource("3_8ivjm")
+
+[node name="Glass" type="MeshInstance3D" parent="." unique_id=1261281220]
+material_override = SubResource("StandardMaterial3D_gshpy")
+mesh = ExtResource("4_fdo8x")
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1385575245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0.5)
+light_color = Color(1, 0.8235294, 0.47843137, 1)
+light_energy = 0.0
+omni_range = 7.0

@@ -1,0 +1,120 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/view_hud.gd" id="1_7ihmi"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2_en2x2"]
+[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="3_1v5rv"]
+[ext_resource type="Shader" path="res://shaders/blind.gdshader" id="4_q43x7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srpbi"]
+shader = ExtResource("3_1v5rv")
+shader_parameter/amount = null
+shader_parameter/tint = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spcu4"]
+shader = ExtResource("4_q43x7")
+shader_parameter/amount = null
+
+[node name="Hud" type="CanvasLayer" unique_id=698965455]
+script = ExtResource("1_7ihmi")
+
+[node name="Root" type="Control" parent="." unique_id=646000891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("2_en2x2")
+
+[node name="ZoneVignette" type="ColorRect" parent="Root" unique_id=617679860]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_srpbi")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Blind" type="ColorRect" parent="Root" unique_id=311363883]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_spcu4")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Damage" type="ColorRect" parent="Root" unique_id=183155609]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.8, 0, 0.05, 0)
+
+[node name="Crosshair" type="Label" parent="Root" unique_id=542090986]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+theme_override_font_sizes/font_size = 30
+text = "+"
+horizontal_alignment = 1
+
+[node name="ZoneWarn" type="Label" parent="Root" unique_id=1293992095]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 120.0
+offset_right = 75.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.8784314, 0.15686275, 0.22745098, 1)
+text = "OUTSIDE THE ZONE"
+horizontal_alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Root" unique_id=424205606]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -120.0
+offset_right = 600.0
+offset_bottom = -24.0
+
+[node name="Name" type="Label" parent="Root/Info" unique_id=467846930]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "PLAYER"
+
+[node name="Weapon" type="Label" parent="Root/Info" unique_id=1124069514]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "PISTOL"
+
+[node name="Powers" type="HBoxContainer" parent="Root/Info" unique_id=326347309]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Fire" type="Label" parent="Root/Info/Powers" unique_id=829103064]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "FIRE"
+horizontal_alignment = 1
+
+[node name="Shadow" type="Label" parent="Root/Info/Powers" unique_id=433500734]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SHADOW"
+horizontal_alignment = 1

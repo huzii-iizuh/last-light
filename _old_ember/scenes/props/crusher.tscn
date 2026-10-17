@@ -1,0 +1,67 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/freezable.gd" id="1_g8mhh"]
+[ext_resource type="Material" path="res://materials/stone_top.tres" id="2_foaa0"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/crusher_block.res" id="3_nqfiu"]
+[ext_resource type="Material" path="res://materials/shadow.tres" id="4_ntdmy"]
+[ext_resource type="ArrayMesh" path="res://models/meshes/crusher_spikes.res" id="5_itmfk"]
+[ext_resource type="Material" path="res://materials/metal.tres" id="6_0apyq"]
+[ext_resource type="Script" path="res://scripts/kill_area.gd" id="7_admn3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjbwn"]
+resource_local_to_scene = true
+albedo_color = Color(0.48235294, 0.654902, 1, 1)
+emission_enabled = true
+emission = Color(0.48235294, 0.654902, 1, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_3txi0"]
+size = Vector3(2.06, 0.16, 2.46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kgia5"]
+size = Vector3(0.3, 14, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ie76"]
+size = Vector3(1.9, 1.8, 1.2)
+
+[node name="Crusher" type="Node3D" unique_id=938665228 node_paths=PackedStringArray("body", "frozen_light")]
+script = ExtResource("1_g8mhh")
+kind = 1
+body = NodePath("Block")
+accent = SubResource("StandardMaterial3D_sjbwn")
+frozen_light = NodePath("FrozenLight")
+
+[node name="FrozenLight" type="OmniLight3D" parent="." unique_id=291844036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4)
+light_color = Color(0.48235294, 0.654902, 1, 1)
+light_energy = 0.0
+omni_range = 4.5
+
+[node name="Block" type="Node3D" parent="." unique_id=893753010]
+
+[node name="Stone" type="MeshInstance3D" parent="Block" unique_id=1612706923]
+material_override = ExtResource("2_foaa0")
+mesh = ExtResource("3_nqfiu")
+
+[node name="Spikes" type="MeshInstance3D" parent="Block" unique_id=493880476]
+material_override = ExtResource("4_ntdmy")
+mesh = ExtResource("5_itmfk")
+
+[node name="Band" type="MeshInstance3D" parent="Block" unique_id=270914073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+material_override = SubResource("StandardMaterial3D_sjbwn")
+mesh = SubResource("BoxMesh_3txi0")
+
+[node name="Rod" type="MeshInstance3D" parent="Block" unique_id=1067563302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.8, 0)
+material_override = ExtResource("6_0apyq")
+mesh = SubResource("BoxMesh_kgia5")
+
+[node name="Kill" type="Area3D" parent="Block" unique_id=1930914643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_admn3")
+
+[node name="Shape" type="CollisionShape3D" parent="Block/Kill" unique_id=268373785]
+shape = SubResource("BoxShape3D_4ie76")
